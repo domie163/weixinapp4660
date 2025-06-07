@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.KetibaomingDao">
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        a.id as id
+        ,a.shiyanshi_yuyue_id as shiyanshiYuyueId
+        ,a.yonghu_id as yonghuId
+        ,a.insert_time as insertTime
+        ,a.ketibaoming_yesno_types as ketibaomingYesnoTypes
+        ,a.ketibaoming_yesno_text as ketibaomingYesnoText
+        ,a.ketibaoming_shenhe_time as ketibaomingShenheTime
+        ,a.ketibaoming_zuoweihao as ketibaomingZuoweihao
+        ,a.create_time as createTime
+    </sql>
+    <select id="selectListView" parameterType="map" resultType="com.entity.view.KetibaomingView" >
+        SELECT
+        <include refid="Base_Column_List" />
+
+--         级联表的字段
+        ,shiyanshiYuyue.laoshi_id as shiyanshiYuyueLaoshiId
+        ,shiyanshiYuyue.shiyanshi_yuyue_uuid_number as shiyanshiYuyueUuidNumber
+        ,shiyanshiYuyue.shiyanshi_yuyue_name as shiyanshiYuyueName
+        ,shiyanshiYuyue.shiyanshi_yuyue_types as shiyanshiYuyueTypes
+        ,shiyanshiYuyue.shiyanshi_yuyue_content as shiyanshiYuyueContent
+        ,shiyanshiYuyue.kaishi_time as kaishiTime
+        ,shiyanshiYuyue.jieshu_time as jieshuTime
+        ,shiyanshiYuyue.shiyanshi_yuyue_yesno_types as shiyanshiYuyueYesnoTypes
+        ,shiyanshiYuyue.shiyanshi_yuyue_yesno_text as shiyanshiYuyueYesnoText
+        ,shiyanshiYuyue.shiyanshi_yuyue_shenhe_time as shiyanshiYuyueShenheTime
+        ,yonghu.yonghu_name as yonghuName
+        ,yonghu.yonghu_phone as yonghuPhone
+        ,yonghu.yonghu_id_number as yonghuIdNumber
+        ,yonghu.yonghu_photo as yonghuPhoto
+        ,yonghu.yuanxi_types as yuanxiTypes
+        ,yonghu.banji_types as banjiTypes
+        ,yonghu.yonghu_email as yonghuEmail
+		
+		
+        ,shiyanshi.shiyanshi_text as shiyanshiText
+
+        FROM ketibaoming  a
+        left JOIN shiyanshi_yuyue shiyanshiYuyue ON a.shiyanshi_yuyue_id = shiyanshiYuyue.id
+        left JOIN shiyanshi shiyanshi ON shiyanshiYuyue.shiyanshi_id = shiyanshi.id
+        left JOIN yonghu yonghu ON a.yonghu_id = yonghu.id
+
+        <where>
+            <if test="params.ids != null">
+                and a.id in
+                <foreach item="item" index="index" collection="params.ids" open="(" separator="," close=")">
+                #{item}
+                </foreach>
+            </if>
+            <if test="params.shiyanshiYuyueId != null and params.shiyanshiYuyueId != ''">
+                and (
+                    a.shiyanshi_yuyue_id = #{params.shiyanshiYuyueId}
+                )
+            </if>
+            <if test="params.yonghuId != null and params.yonghuId != ''">
+                and (
+                    a.yonghu_id = #{params.yonghuId}
+                )
+            </if>
+            <if test=" params.insertTimeStart != '' and params.insertTimeStart != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(a.insert_time) >= UNIX_TIMESTAMP(#{params.insertTimeStart}) ]]>
+            </if>
+            <if test=" params.insertTimeEnd != '' and params.insertTimeEnd != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(a.insert_time) <= UNIX_TIMESTAMP(#{params.insertTimeEnd}) ]]>
+            </if>
+            <if test="params.ketibaomingYesnoTypes != null and params.ketibaomingYesnoTypes != ''">
+                and a.ketibaoming_yesno_types = #{params.ketibaomingYesnoTypes}
+            </if>
+            <if test=" params.ketibaomingYesnoText != '' and params.ketibaomingYesnoText != null and params.ketibaomingYesnoText != 'null' ">
+                and a.ketibaoming_yesno_text like CONCAT('%',#{params.ketibaomingYesnoText},'%')
+            </if>
+            <if test=" params.ketibaomingShenheTimeStart != '' and params.ketibaomingShenheTimeStart != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(a.ketibaoming_shenhe_time) >= UNIX_TIMESTAMP(#{params.ketibaomingShenheTimeStart}) ]]>
+            </if>
+            <if test=" params.ketibaomingShenheTimeEnd != '' and params.ketibaomingShenheTimeEnd != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(a.ketibaoming_shenhe_time) <= UNIX_TIMESTAMP(#{params.ketibaomingShenheTimeEnd}) ]]>
+            </if>
+            <if test=" params.ketibaomingZuoweihao != '' and params.ketibaomingZuoweihao != null and params.ketibaomingZuoweihao != 'null' ">
+                and a.ketibaoming_zuoweihao like CONCAT('%',#{params.ketibaomingZuoweihao},'%')
+            </if>
+
+                <!-- 判断实验室预约的id不为空 -->
+            <if test=" params.shiyanshiYuyueIdNotNull != '' and params.shiyanshiYuyueIdNotNull != null and params.shiyanshiYuyueIdNotNull != 'null' ">
+                and a.shiyanshi_yuyue_id IS NOT NULL
+            </if>
+            <if test="params.shiyanshiId != null  and params.shiyanshiId != ''">
+                and shiyanshiYuyue.shiyanshi_id = #{params.shiyanshiId}
+            </if>
+            <if test="params.laoshiId != null  and params.laoshiId != ''">
+                and shiyanshiYuyue.laoshi_id = #{params.laoshiId}
+            </if>
+            <if test=" params.shiyanshiYuyueUuidNumber != '' and params.shiyanshiYuyueUuidNumber != null and params.shiyanshiYuyueUuidNumber != 'null' ">
+                and shiyanshiYuyue.shiyanshi_yuyue_uuid_number like CONCAT('%',#{params.shiyanshiYuyueUuidNumber},'%')
+            </if>
+            <if test=" params.shiyanshiYuyueName != '' and params.shiyanshiYuyueName != null and params.shiyanshiYuyueName != 'null' ">
+                and shiyanshiYuyue.shiyanshi_yuyue_name like CONCAT('%',#{params.shiyanshiYuyueName},'%')
+            </if>
+            <if test="params.shiyanshiYuyueTypes != null  and params.shiyanshiYuyueTypes != ''">
+                and shiyanshiYuyue.shiyanshi_yuyue_types = #{params.shiyanshiYuyueTypes}
+            </if>
+
+            <if test=" params.shiyanshiYuyueContent != '' and params.shiyanshiYuyueContent != null and params.shiyanshiYuyueContent != 'null' ">
+                and shiyanshiYuyue.shiyanshi_yuyue_content like CONCAT('%',#{params.shiyanshiYuyueContent},'%')
+            </if>
+            <if test=" params.insertTimeStart != '' and params.insertTimeStart != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(shiyanshiYuyue.insert_time) >= UNIX_TIMESTAMP(#{params.insertTimeStart}) ]]>
+            </if>
+            <if test=" params.insertTimeEnd != '' and params.insertTimeEnd != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(shiyanshiYuyue.insert_time) <= UNIX_TIMESTAMP(#{params.insertTimeEnd}) ]]>
+            </if>
+            <if test=" params.kaishiTimeStart != '' and params.kaishiTimeStart != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(shiyanshiYuyue.kaishi_time) >= UNIX_TIMESTAMP(#{params.kaishiTimeStart}) ]]>
+            </if>
+            <if test=" params.kaishiTimeEnd != '' and params.kaishiTimeEnd != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(shiyanshiYuyue.kaishi_time) <= UNIX_TIMESTAMP(#{params.kaishiTimeEnd}) ]]>
+            </if>
+            <if test=" params.jieshuTimeStart != '' and params.jieshuTimeStart != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(shiyanshiYuyue.jieshu_time) >= UNIX_TIMESTAMP(#{params.jieshuTimeStart}) ]]>
+            </if>
+            <if test=" params.jieshuTimeEnd != '' and params.jieshuTimeEnd != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(shiyanshiYuyue.jieshu_time) <= UNIX_TIMESTAMP(#{params.jieshuTimeEnd}) ]]>
+            </if>
+            <if test="params.shiyanshiYuyueYesnoTypes != null  and params.shiyanshiYuyueYesnoTypes != ''">
+                and shiyanshiYuyue.shiyanshi_yuyue_yesno_types = #{params.shiyanshiYuyueYesnoTypes}
+            </if>
+
+            <if test=" params.shiyanshiYuyueYesnoText != '' and params.shiyanshiYuyueYesnoText != null and params.shiyanshiYuyueYesnoText != 'null' ">
+                and shiyanshiYuyue.shiyanshi_yuyue_yesno_text like CONCAT('%',#{params.shiyanshiYuyueYesnoText},'%')
+            </if>
+            <if test=" params.shiyanshiYuyueShenheTimeStart != '' and params.shiyanshiYuyueShenheTimeStart != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(shiyanshiYuyue.shiyanshi_yuyue_shenhe_time) >= UNIX_TIMESTAMP(#{params.shiyanshiYuyueShenheTimeStart}) ]]>
+            </if>
+            <if test=" params.shiyanshiYuyueShenheTimeEnd != '' and params.shiyanshiYuyueShenheTimeEnd != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(shiyanshiYuyue.shiyanshi_yuyue_shenhe_time) <= UNIX_TIMESTAMP(#{params.shiyanshiYuyueShenheTimeEnd}) ]]>
+            </if>
+                <!-- 判断学生的id不为空 -->
+            <if test=" params.yonghuIdNotNull != '' and params.yonghuIdNotNull != null and params.yonghuIdNotNull != 'null' ">
+                and a.yonghu_id IS NOT NULL
+            </if>
+            <if test=" params.yonghuName != '' and params.yonghuName != null and params.yonghuName != 'null' ">
+                and yonghu.yonghu_name like CONCAT('%',#{params.yonghuName},'%')
+            </if>
+            <if test=" params.yonghuPhone != '' and params.yonghuPhone != null and params.yonghuPhone != 'null' ">
+                and yonghu.yonghu_phone like CONCAT('%',#{params.yonghuPhone},'%')
+            </if>
+            <if test=" params.yonghuIdNumber != '' and params.yonghuIdNumber != null and params.yonghuIdNumber != 'null' ">
+                and yonghu.yonghu_id_number like CONCAT('%',#{params.yonghuIdNumber},'%')
+            </if>
+            <if test="params.yuanxiTypes != null  and params.yuanxiTypes != ''">
+                and yonghu.yuanxi_types = #{params.yuanxiTypes}
+            </if>
+
+            <if test="params.banjiTypes != null  and params.banjiTypes != ''">
+                and yonghu.banji_types = #{params.banjiTypes}
+            </if>
+
+            <if test=" params.yonghuEmail != '' and params.yonghuEmail != null and params.yonghuEmail != 'null' ">
+                and yonghu.yonghu_email like CONCAT('%',#{params.yonghuEmail},'%')
+            </if>
+        </where>
+        order by a.${params.sort} ${params.order}
+    </select>
+
+</mapper>

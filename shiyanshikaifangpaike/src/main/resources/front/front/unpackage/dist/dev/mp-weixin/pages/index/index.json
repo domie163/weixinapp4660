@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#45BBE8",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "开放实验室预约管理系统首页",
+  "usingComponents": {
+    "uni-icons": "/components/uni-ui/lib/uni-icons/uni-icons"
+  }
+}

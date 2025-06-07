@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ShiyanshiDao">
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        a.id as id
+        ,a.shiyanshi_uuid_number as shiyanshiUuidNumber
+        ,a.shiyanshi_name as shiyanshiName
+        ,a.shiyanshi_photo as shiyanshiPhoto
+        ,a.shiyanshi_types as shiyanshiTypes
+        ,a.shiyanshi_address as shiyanshiAddress
+        ,a.shiyanshi_text as shiyanshiText
+        ,a.shiyanshi_content as shiyanshiContent
+        ,a.insert_time as insertTime
+        ,a.create_time as createTime
+    </sql>
+    <select id="selectListView" parameterType="map" resultType="com.entity.view.ShiyanshiView" >
+        SELECT
+        <include refid="Base_Column_List" />
+
+--         级联表的字段
+
+        FROM shiyanshi  a
+
+        <where>
+            <if test="params.ids != null">
+                and a.id in
+                <foreach item="item" index="index" collection="params.ids" open="(" separator="," close=")">
+                #{item}
+                </foreach>
+            </if>
+            <if test=" params.shiyanshiUuidNumber != '' and params.shiyanshiUuidNumber != null and params.shiyanshiUuidNumber != 'null' ">
+                and a.shiyanshi_uuid_number like CONCAT('%',#{params.shiyanshiUuidNumber},'%')
+            </if>
+            <if test=" params.shiyanshiName != '' and params.shiyanshiName != null and params.shiyanshiName != 'null' ">
+                and a.shiyanshi_name like CONCAT('%',#{params.shiyanshiName},'%')
+            </if>
+            <if test="params.shiyanshiTypes != null and params.shiyanshiTypes != ''">
+                and a.shiyanshi_types = #{params.shiyanshiTypes}
+            </if>
+            <if test=" params.shiyanshiAddress != '' and params.shiyanshiAddress != null and params.shiyanshiAddress != 'null' ">
+                and a.shiyanshi_address like CONCAT('%',#{params.shiyanshiAddress},'%')
+            </if>
+            <if test=" params.shiyanshiText != '' and params.shiyanshiText != null and params.shiyanshiText != 'null' ">
+                and a.shiyanshi_text like CONCAT('%',#{params.shiyanshiText},'%')
+            </if>
+            <if test=" params.shiyanshiContent != '' and params.shiyanshiContent != null and params.shiyanshiContent != 'null' ">
+                and a.shiyanshi_content like CONCAT('%',#{params.shiyanshiContent},'%')
+            </if>
+            <if test=" params.insertTimeStart != '' and params.insertTimeStart != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(a.insert_time) >= UNIX_TIMESTAMP(#{params.insertTimeStart}) ]]>
+            </if>
+            <if test=" params.insertTimeEnd != '' and params.insertTimeEnd != null ">
+                <![CDATA[  and UNIX_TIMESTAMP(a.insert_time) <= UNIX_TIMESTAMP(#{params.insertTimeEnd}) ]]>
+            </if>
+
+        </where>
+        order by a.${params.sort} ${params.order}
+    </select>
+
+</mapper>

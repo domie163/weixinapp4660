@@ -1,0 +1,265 @@
+{
+	"pages": [{
+		"path": "pages/login/login",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "登录"
+		}
+	},{
+		"path": "pages/register/register",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "注册"
+		}
+	},{
+		"path": "pages/forget/forget",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "忘记密码"
+		}
+	},{
+		"path": "pages/center/center",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "我的"
+		}
+	},{
+		"path": "pages/user-info/userinfo",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "用户信息"
+		}
+	}
+
+	,{
+		"path": "pages/gonggao/list",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "公告展示"
+		}
+	},{
+		"path": "pages/gonggao/list2",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "我的公告"
+		}
+	},{
+		"path": "pages/gonggao/add-or-update",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "公告添加/修改"
+		}
+	},{
+		"path": "pages/gonggao/detail",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "公告详情"
+		}
+	}
+	,{
+		"path": "pages/ketibaoming/list",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "课题报名展示"
+		}
+	},{
+		"path": "pages/ketibaoming/list2",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "我的课题报名"
+		}
+	},{
+		"path": "pages/ketibaoming/add-or-update",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "课题报名添加/修改"
+		}
+	},{
+		"path": "pages/ketibaoming/detail",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "课题报名详情"
+		}
+	}
+	,{
+		"path": "pages/laoshi/list",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "老师展示"
+		}
+	},{
+		"path": "pages/laoshi/list2",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "我的老师"
+		}
+	},{
+		"path": "pages/laoshi/add-or-update",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "老师添加/修改"
+		}
+	},{
+		"path": "pages/laoshi/detail",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "老师详情"
+		}
+	}
+	,{
+		"path": "pages/shiyanshi/list",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "实验室展示"
+		}
+	},{
+		"path": "pages/shiyanshi/list2",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "我的实验室"
+		}
+	},{
+		"path": "pages/shiyanshi/add-or-update",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "实验室添加/修改"
+		}
+	},{
+		"path": "pages/shiyanshi/detail",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "实验室详情"
+		}
+	}
+	,{
+		"path": "pages/shiyanshiYuyue/list",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "实验室预约展示"
+		}
+	},{
+		"path": "pages/shiyanshiYuyue/list2",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "我的实验室预约"
+		}
+	},{
+		"path": "pages/shiyanshiYuyue/add-or-update",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "实验室预约添加/修改"
+		}
+	},{
+		"path": "pages/shiyanshiYuyue/detail",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "实验室预约详情"
+		}
+	}
+	,{
+		"path": "pages/yonghu/list",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "学生展示"
+		}
+	},{
+		"path": "pages/yonghu/list2",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "我的学生"
+		}
+	},{
+		"path": "pages/yonghu/add-or-update",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "学生添加/修改"
+		}
+	},{
+		"path": "pages/yonghu/detail",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "学生详情"
+		}
+	}
+			,{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarBackgroundColor": "#45BBE8",
+			"navigationBarTextStyle": "white",
+			"navigationBarTitleText": "开放实验室预约管理系统首页"
+		}
+	}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "开放实验室预约管理系统",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#FFFFFF",
+		"selectedColor": "#fff",
+		"borderStyle": "black",
+		"backgroundColor": "#0061f8",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tabs/index.png",
+				"selectedIconPath": "static/tabs/index1.png",
+				"text": "首页"
+			}
+			,{
+				"pagePath": "pages/gonggao/list",
+				"iconPath": "static/tabs/type.png",
+				"selectedIconPath": "static/tabs/type1.png",
+				"text": "公告"
+			}
+			,{
+				"pagePath": "pages/shiyanshi/list",
+				"iconPath": "static/tabs/type.png",
+				"selectedIconPath": "static/tabs/type1.png",
+				"text": "实验室"
+			}
+			,{
+				"pagePath": "pages/center/center",
+				"iconPath": "static/tabs/mine.png",
+				"selectedIconPath": "static/tabs/mine1.png",
+				"text": "我的"
+			}
+		]
+	}
+	// "permission": {
+	// 	"scope.userLocation": {
+	// 		"desc": ""
+	// 	}
+	// },
+	// "requiredPrivateInfos": ["getLocation", "chooseLocation"]
+}

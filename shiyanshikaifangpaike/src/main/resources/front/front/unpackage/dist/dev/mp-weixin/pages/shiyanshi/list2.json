@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#45BBE8",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "我的实验室",
+  "usingComponents": {
+    "mescroll-uni": "/components/mescroll-uni/mescroll-uni"
+  }
+}
